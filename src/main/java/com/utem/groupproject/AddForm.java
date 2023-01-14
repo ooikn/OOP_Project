@@ -6,6 +6,8 @@ package com.utem.groupproject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +19,8 @@ public class AddForm extends javax.swing.JFrame {
     private Drink drink;
     private static int foodNum = 0;
     private static int drinkNum = 0;
+    
+    private ItemManager manager = new ItemManager();
     
     private static ArrayList<Food> foodList;
     private static ArrayList<Drink> drinkList;
@@ -257,6 +261,12 @@ public class AddForm extends javax.swing.JFrame {
                 food.setExpiredDate(sdf.format(expiredDateChooser.getDate()));
                 food.setItemPrice(Double.parseDouble(priceTxtField.getText().trim()));
                 food.setItemQuantity(Integer.parseInt(qtyTxtField.getText().trim()));
+                
+                try {
+                    manager.saveFood(food);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(AddForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             else
             {
@@ -269,6 +279,12 @@ public class AddForm extends javax.swing.JFrame {
                 drink.setExpiredDate(sdf.format(expiredDateChooser.getDate()));
                 drink.setItemPrice(Double.parseDouble(priceTxtField.getText().trim()));
                 drink.setItemQuantity(Integer.parseInt(qtyTxtField.getText().trim()));
+                
+                try {
+                    manager.saveDrink(drink);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(AddForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             JOptionPane.showMessageDialog(null,"The item has been saved!");
             clearForm();
