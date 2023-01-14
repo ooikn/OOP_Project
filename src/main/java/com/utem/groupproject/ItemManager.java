@@ -75,7 +75,7 @@ public class ItemManager{
                 drink.setItemPrice(rs.getDouble("PRICE"));
                 drink.setItemQuantity(rs.getInt("QUANTITY"));
                 
-                drinkList.add(drink);   
+                drinkList.add(drink);
             }
         }
         catch (SQLException err)

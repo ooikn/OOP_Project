@@ -17,8 +17,6 @@ import javax.swing.JOptionPane;
 public class AddForm extends javax.swing.JFrame {
     private Food food;
     private Drink drink;
-    private static int foodNum = 0;
-    private static int drinkNum = 0;
     
     private ItemManager manager = new ItemManager();
     
@@ -219,6 +217,7 @@ public class AddForm extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void returnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBtnActionPerformed
@@ -247,7 +246,23 @@ public class AddForm extends javax.swing.JFrame {
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
+        
+        int foodNum = 0,drinkNum = 0;
+        int currFoodNum,currDrinkNum;
+        
+        try {
+            currFoodNum = manager.readAllFood().size();
+            foodNum = currFoodNum;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AddForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            currDrinkNum = manager.readAllDrink().size();
+            drinkNum = currDrinkNum;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AddForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         if (!isEmpty())
         {

@@ -45,8 +45,10 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Grocery Inventory System");
+        setLocation(new java.awt.Point(300, 250));
 
         jMenuBar1.setBackground(new java.awt.Color(204, 0, 255));
+        jMenuBar1.setAlignmentY(0.5F);
 
         addMenu.setIcon(new javax.swing.ImageIcon("D:\\mangy\\Documents\\Sem 3\\OOP\\GUIProject\\GroupProject\\src\\main\\src\\plus.png")); // NOI18N
         addMenu.setText("Add");
@@ -60,6 +62,11 @@ public class Menu extends javax.swing.JFrame {
         addMenu.add(newMenuItem);
 
         restockMenuItem.setText("Restock Item");
+        restockMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                restockMenuItemActionPerformed(evt);
+            }
+        });
         addMenu.add(restockMenuItem);
 
         jMenuBar1.add(addMenu);
@@ -120,6 +127,7 @@ public class Menu extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMenuMouseClicked
@@ -137,6 +145,11 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         new AddForm().setVisible(true);
     }//GEN-LAST:event_newMenuItemActionPerformed
+
+    private void restockMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restockMenuItemActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_restockMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
