@@ -4,6 +4,8 @@
  */
 package com.utem.groupproject;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -97,9 +99,19 @@ public class Menu extends javax.swing.JFrame {
         viewMenu.setText("View");
 
         displayMenuItem.setText("Display");
+        displayMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayMenuItemActionPerformed(evt);
+            }
+        });
         viewMenu.add(displayMenuItem);
 
         sortMenuItem.setText("Sort");
+        sortMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sortMenuItemActionPerformed(evt);
+            }
+        });
         viewMenu.add(sortMenuItem);
 
         jMenuBar1.add(viewMenu);
@@ -148,8 +160,67 @@ public class Menu extends javax.swing.JFrame {
 
     private void restockMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restockMenuItemActionPerformed
         // TODO add your handling code here:
-        
+        String[] option = new String[]{"Food","Drink"};
+        int type = JOptionPane.showOptionDialog(null, "Which item's type you want to restock?", "Select Type:", 
+                                                      0, 3, null, option, 2);
+        if (type != 0 && type != 1){
+            return;
+        }
+        String itemID = JOptionPane.showInputDialog("What is the ID of the item you want to restock?");
+        if (itemID == null){
+            return;
+        }
+        boolean inputAccepted = false;
+        while(!inputAccepted) {
+            try {
+              int num = Integer.parseInt(JOptionPane.showInputDialog("The enter the numbers to restock:"));
+                if (num < 1) {
+                JOptionPane.showMessageDialog(null,"The input must be greater than 0");
+                } 
+                else if (num > 0){
+                inputAccepted = true;
+                }
+            } catch(NumberFormatException e) {
+              JOptionPane.showMessageDialog(null,"The input must be number");
+              var result = JOptionPane.showConfirmDialog(null,"Do you want to insert again","Alert",
+                      JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+              if (result == JOptionPane.NO_OPTION){
+                  break;
+              }
+            } 
+        }
     }//GEN-LAST:event_restockMenuItemActionPerformed
+
+    private void displayMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayMenuItemActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            new DisplayForm().setVisible(true);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_displayMenuItemActionPerformed
+
+    private void sortMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortMenuItemActionPerformed
+        // TODO add your handling code here:
+        String[] option = new String[]{"Food","Drink"};
+        int type = JOptionPane.showOptionDialog(null, "Which item's type you want to restock?", "Select Type:", 
+                                                      0, 3, null, option, null);
+        if (type == 0){
+            try {
+                new SortFoodForm().setVisible(true);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if (type == 1){
+            try {
+                new SortDrinkForm().setVisible(true);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_sortMenuItemActionPerformed
 
     /**
      * @param args the command line arguments

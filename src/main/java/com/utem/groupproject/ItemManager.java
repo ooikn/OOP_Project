@@ -146,4 +146,13 @@ public class ItemManager{
             JOptionPane.showMessageDialog(null,err.getMessage());
         }
     }
+    
+    public void restockItem(String itemID,int selectedType,int num) throws ClassNotFoundException{
+        if (selectedType == 0){
+            //searchFood();
+        }
+        else{
+            //searchDrink();
+        }
+    }
 }
