@@ -155,4 +155,28 @@ public class ItemManager{
             //searchDrink();
         }
     }
+    
+    public void deleteDrink(String deleteDrinkID) throws ClassNotFoundException{
+        try{           
+            String SQL = "DELETE FROM drink where DRINKID=?";
+            PreparedStatement ps = db.openConnection().prepareStatement(SQL);
+            ps.setString(1, deleteDrinkID);
+            ps.executeUpdate();       
+        }
+        catch(SQLException err){
+            JOptionPane.showMessageDialog(null, err.getMessage());
+        }
+    }
+
+    public void deleteFood(String deleteFoodID) throws ClassNotFoundException{
+        try{           
+            String SQL = "DELETE FROM food where FOODID=?";
+            PreparedStatement ps = db.openConnection().prepareStatement(SQL);
+            ps.setString(1, deleteFoodID);
+            ps.executeUpdate();       
+        }
+        catch(SQLException err){
+            JOptionPane.showMessageDialog(null, err.getMessage());
+        }
+    }
 }
